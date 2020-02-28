@@ -86,11 +86,8 @@ set ruler
 set incsearch
 "high light search
 set hlsearch
-
 "auto backup file with filename+~
-set nobackup
-set noswapfile
-
+"set backup
 set title
 set foldenable
 "fold code by syntax 'cmd':
@@ -121,37 +118,38 @@ nnoremap no :!node %<cr>
 call plug#begin('~/.vim/plugged')
 
 " 美化主题
-Plug 'plasticboy/vim-markdown'
 Plug 'Yggdroot/indentLine'                           " 美化代码缩进
 Plug 'morhetz/gruvbox'                               " colorscheme: gruvbox
 Plug 'junegunn/seoul256.vim'                         " colorscheme: seoul256
 Plug 'w0ng/vim-hybrid'                               " colorscheme: hybrid
+Plug 'joshdick/onedark.vim'                          " colorschema: onedark
+Plug 'srcery-colors/srcery-vim'                      " colorschema: srcery
+Plug 'rakr/vim-one'                                  " colorscheme: one
+" Plug 'altercation/vim-colors-solarized'            " 需要手动安装
 Plug 'jaxbot/semantic-highlight.vim'                 " ,h 根据语义来代码高亮
 Plug 'bling/vim-airline'                             " 状态栏
 Plug 'vim-airline/vim-airline-themes'                " 同上
-" Plug 'rakr/vim-one'                                " colorscheme: one
-" Plug 'altercation/vim-colors-solarized'            " 需要手动安装
 
 
 " 功能扩展
 " Plug 'Chiel92/vim-autoformat' " https://github.com/Chiel92/vim-autoformat for code formatter
-Plug 'terryma/vim-expand-region'            " + 扩大选择, - 减少选择
-Plug 'ntpeters/vim-better-whitespace'       " 空白
-Plug 'fullybaked/toggle-numbers.vim'        " 行号
-Plug 'airblade/vim-gitgutter'               " git状态
-Plug 'lfv89/vim-interestingwords'           " https://github.com/lfv89/vim-interestingwords
-Plug 'elzr/vim-json'                        " json格式化
-Plug 'ervandew/supertab'                    " 补全
-Plug 'tpope/vim-surround'                   " 高效操作配对符号
-Plug 'tpope/vim-repeat'                     " 按.重复surround操作
+Plug 'terryma/vim-expand-region'                     " + 扩大选择, - 减少选择
+Plug 'ntpeters/vim-better-whitespace'                " 空白
+Plug 'fullybaked/toggle-numbers.vim'                 " 行号
+Plug 'airblade/vim-gitgutter'                        " git状态
+Plug 'lfv89/vim-interestingwords'                    " https://github.com/lfv89/vim-interestingwords
+Plug 'elzr/vim-json'                                 " json格式化
+Plug 'ervandew/supertab'                             " 补全
+Plug 'tpope/vim-surround'                            " 高效操作配对符号
+Plug 'tpope/vim-repeat'                              " 按.重复surround操作
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'                     " 搜索
-Plug 'mhinz/vim-startify'                   " vim启动菜单
-Plug 'majutsushi/tagbar'                    " 列出tag
-Plug 'tpope/vim-fugitive'                   " git命令
-Plug 'junegunn/gv.vim'                      " git https://github.com/junegunn/gv.vim git commit browser
-Plug 'Xuyuanp/nerdtree-git-plugin'          " 导航目录中看到 git 版本信息
+Plug 'junegunn/fzf.vim'                              " 搜索
+Plug 'mhinz/vim-startify'                            " vim启动菜单
+Plug 'majutsushi/tagbar'                             " 列出tag
+Plug 'tpope/vim-fugitive'                            " git命令
+Plug 'junegunn/gv.vim'                               " git https://github.com/junegunn/gv.vim git commit browser
+Plug 'Xuyuanp/nerdtree-git-plugin'                   " 导航目录中看到 git 版本信息
 
 
 " 代码补全
@@ -164,28 +162,29 @@ Plug 'Xuyuanp/nerdtree-git-plugin'          " 导航目录中看到 git 版本�
 " endif
 " let g:deoplete#enable_at_startup = 1
 
-Plug 'godlygeek/tabular'                       " 文本对齐, 选定文本 :Tab/符号
-Plug 'jiangmiao/auto-pairs'                    " 自动匹配对称标记
-Plug 'kien/rainbow_parentheses.vim'            " 彩色括号
-Plug 'honza/vim-snippets'                      " 代码模板
-" Plug 'SirVer/ultisnips'                        " 代码模板
-Plug 'vim-syntastic/syntastic'                 " 语法检测
-Plug 'scrooloose/nerdtree'                     " 目录树
-Plug 'jistr/vim-nerdtree-tabs'                 " 目录树
-Plug 'ctrlpvim/ctrlp.vim'                      " 类似vscode command + p
-Plug 'tpope/vim-dispatch'                      " 异步编译及testing
-Plug 'easymotion/vim-easymotion'               " 快速移动插件, ',,w'可以在单词上出现前缀，然后快速跳转
-Plug 'haya14busa/incsearch.vim'                " 支持regex的匹配查询
+Plug 'godlygeek/tabular'                           " 文本对齐, 选定文本 :Tab/符号
+Plug 'jiangmiao/auto-pairs'                        " 自动匹配对称标记
+Plug 'kien/rainbow_parentheses.vim'                " 彩色括号
+Plug 'honza/vim-snippets'                          " 代码模板
+" Plug 'SirVer/ultisnips'                            " 代码模板
+" Plug 'vim-syntastic/syntastic'                   " 语法检测
+Plug 'scrooloose/nerdtree'                         " 目录树
+Plug 'jistr/vim-nerdtree-tabs'                     " 目录树
+Plug 'ctrlpvim/ctrlp.vim'                          " 类似vscode command + p
+Plug 'tpope/vim-dispatch'                          " 异步编译及testing
+Plug 'easymotion/vim-easymotion'                   " 快速移动插件, ',,w'可以在单词上出现前缀，然后快速跳转
+Plug 'haya14busa/incsearch.vim'                    " 支持regex的匹配查询
 Plug 'Valloric/YouCompleteMe'
-Plug 'haya14busa/incsearch-fuzzy.vim'          " 同上
-Plug 'dgryski/vim-godef'                       " for golang
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-" Plug 'jmcantrell/vim-virtualenv'             " for python
-Plug 'python-mode/python-mode'                 " for python
-Plug 'zchee/deoplete-jedi'                     " for python
-Plug 'ryanoasis/vim-devicons'                  " 文件icon
-Plug 'scrooloose/nerdcommenter'                " 快速注释
-" Plug 'xolox/vim-misc'                     " load vimscript
+Plug 'haya14busa/incsearch-fuzzy.vim'              " 同上
+Plug 'dgryski/vim-godef'                           " for golang
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinarie    s' }
+" Plug 'jmcantrell/vim-virtualenv'                 " for python
+Plug 'python-mode/python-mode'                     " for python
+Plug 'zchee/deoplete-jedi'                         " for python
+Plug 'ryanoasis/vim-devicons'                      " 文件icon
+Plug 'scrooloose/nerdcommenter'                    " 快速注释
+" Plug 'xolox/vim-misc'                           " load vimscript
+
 
 " 模糊搜索，使用z/支持模糊搜索
 map z/ <Plug>(incsearch-fuzzy-/)
@@ -490,7 +489,6 @@ noremap <leader>buf :bd<cr>           " 清理缓存
 noremap <leader>s :vs<cr>             " vertical split
 noremap <leader>r :e!<cr>             " reload without save
 
-
 " Del 删除
 nmap <Del> x
 nmap <Bs> x
@@ -514,6 +512,14 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 " 禁止 startify 自动切换目录
 let g:startify_change_to_dir = 0
 
+"
+set background=dark
+" colorscheme gruvbox
+" colorscheme hybrid
+" colorscheme   seoul256
+" colorscheme srcery
+" colorscheme one
+colorscheme onedark
 
 " solarized 主题
 " let g:solarized_termtrans = 1
@@ -522,10 +528,6 @@ let g:startify_change_to_dir = 0
 " let g:solarized_visibility = "high"
 " let g:solarized_contrast = "high"
 " colorschema hybrid, https://github.com/w0ng/vim-hybrid
-"
-set background=dark
-" colorscheme gruvbox
-colorscheme hybrid
 
 
 " 用 ,a 搜索当前 cursor 下单词
