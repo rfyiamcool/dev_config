@@ -2,6 +2,9 @@
 
 fast init config for mac and linux.
 
+<img src="static/vim.png" alt="vim-golang" width="230" />
+<img src="static/golang.png" alt="golang" width="250" />
+
 ## Dep
 
 ```
@@ -64,4 +67,12 @@ reinstall ycm
 ```
 cd ~/.vim/plugged/YouCompleteMe
 python3 install.py --go-completer
+```
+
+## more doc
+
+vim-go
+
+```
+https://github.com/fatih/vim-go
 ```

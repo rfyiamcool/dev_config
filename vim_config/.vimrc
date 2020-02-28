@@ -86,8 +86,11 @@ set ruler
 set incsearch
 "high light search
 set hlsearch
+
 "auto backup file with filename+~
-"set backup
+set nobackup
+set noswapfile
+
 set title
 set foldenable
 "fold code by syntax 'cmd':
@@ -118,6 +121,7 @@ nnoremap no :!node %<cr>
 call plug#begin('~/.vim/plugged')
 
 " 美化主题
+Plug 'plasticboy/vim-markdown'
 Plug 'Yggdroot/indentLine'                           " 美化代码缩进
 Plug 'morhetz/gruvbox'                               " colorscheme: gruvbox
 Plug 'junegunn/seoul256.vim'                         " colorscheme: seoul256
@@ -165,7 +169,7 @@ Plug 'jiangmiao/auto-pairs'                    " 自动匹配对称标记
 Plug 'kien/rainbow_parentheses.vim'            " 彩色括号
 Plug 'honza/vim-snippets'                      " 代码模板
 " Plug 'SirVer/ultisnips'                        " 代码模板
-" Plug 'vim-syntastic/syntastic'               " 语法检测
+Plug 'vim-syntastic/syntastic'                 " 语法检测
 Plug 'scrooloose/nerdtree'                     " 目录树
 Plug 'jistr/vim-nerdtree-tabs'                 " 目录树
 Plug 'ctrlpvim/ctrlp.vim'                      " 类似vscode command + p
@@ -479,16 +483,22 @@ set laststatus=2                      " always show status line
 set lazyredraw                        " don't bother updating screen during macro playback
 
 " exit 退出快捷键
-noremap <leader>w :w!<cr>
-noremap <leader>q :q!<cr>
-noremap <leader>wq :wq!<cr>
-noremap <leader>b :bd<cr>
-noremap <leader>s :vs<cr>  " vertical split
-noremap <leader>r :e!<cr>  " reload without save
+noremap <leader>w :w!<cr>             " 强制写入
+noremap <leader>q :q!<cr>             " 强制退出
+noremap <leader>wq :wq!<cr>           " 写入退出
+noremap <leader>buf :bd<cr>           " 清理缓存
+noremap <leader>s :vs<cr>             " vertical split
+noremap <leader>r :e!<cr>             " reload without save
 
+
+" Del 删除
+nmap <Del> x
+nmap <Bs> x
+vmap <Bs> x
 
 " v 模式下复制内容到系统剪切板
 vmap <Leader>c "+yy
+" nmap <leader>v "+gp
 
 " 跳到上次标记处
 noremap <c-i> <Esc>`^
