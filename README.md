@@ -11,7 +11,7 @@ python 3.7
 
 ## Usage
 
-"""step by step"""
+**step by step**
 
 install vim 8.2
 
@@ -20,7 +20,8 @@ cd ~
 wget https://github.com/vim/vim/archive/v8.2.0326.tar.gz
 tar zxvf v8.2.0326.tar.gz
 cd v8.2.0326
-# 注意python config位置
+
+# validate python-config path
 ./configure --with-features=huge \
     --enable-cscope \
     --enable-fontset \
@@ -56,7 +57,11 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 vim +PlugInstall
+```
 
+reinstall ycm
+
+```
 cd ~/.vim/plugged/YouCompleteMe
 python3 install.py --go-completer
 ```

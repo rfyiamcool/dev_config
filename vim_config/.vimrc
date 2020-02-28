@@ -1,13 +1,12 @@
-" wget https://github.com/vim/vim/archive/v8.0.0666.tar.gz
-" tar xvzf v8.0.0666.tar.gz
+" Install
+" wget https://github.com/vim/vim/archive/v8.2.0326.tar.gz
+" tar zxvf v8.2.0326.tar.gz
+" cd v8.2.0326
+" # 注意python config位置
 " ./configure --with-features=huge --enable-pythoninterp=yes  --enable-cscope --enable-fontset --enable-perlinterp --enable-rubyinterp --with-python-config-dir=/usr/lib/python2.7/config --prefix=/usr/local
-" make
-" sudo make install
+" make && make install
 " alias vi='/usr/local/bin/vim '
-
-"vi /usr/local/Cellar/vim/7.4.1016/share/vim/vim74/ftplugin/python.vim,
-"http://vim.1045645.n5.nabble.com/FileType-conditional-td1141787.html
-"let g:loaded_youcompleteme = 0
+" /usr/local/bin/vim --version| head -n 1
 
 " https://superuser.com/questions/302186/vim-scrolls-very-slowly-when-a-line-is-too-long
 " Syntax coloring lines that are too long just slows down the world
@@ -15,6 +14,8 @@ set synmaxcol=1000
 set ttyfast " u got a fast terminal
 set ttyscroll=3
 set lazyredraw " to avoid scrolling problems
+
+set ignorecase
 
 " for paste mode toggle
 set pastetoggle=<F2>
@@ -39,9 +40,9 @@ set undolevels=1000
 
 set guifont=Monaco:h16
 set guifont=Monaco\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
-set backupdir=~/.Vimbackup
 set cursorline
-"setlocal textwidth=80
+" set backupdir=~/.Vimbackup
+" setlocal textwidth=80
 set tags=tags
 set noautochdir    " 注意这个自动切换目录会使rope找目录不正确，禁用，坑死我
 autocmd BufRead,BufNewFile *.py set et ts=4 sw=4 sts=4
@@ -134,7 +135,7 @@ Plug 'terryma/vim-expand-region'            " + 扩大选择, - 减少选择
 Plug 'ntpeters/vim-better-whitespace'       " 空白
 Plug 'fullybaked/toggle-numbers.vim'        " 行号
 Plug 'airblade/vim-gitgutter'               " git状态
-Plug 'lfv89/vim-interestingwords'    " https://github.com/lfv89/vim-interestingwords
+Plug 'lfv89/vim-interestingwords'           " https://github.com/lfv89/vim-interestingwords
 Plug 'elzr/vim-json'                        " json格式化
 Plug 'ervandew/supertab'                    " 补全
 Plug 'tpope/vim-surround'                   " 高效操作配对符号
@@ -146,22 +147,24 @@ Plug 'mhinz/vim-startify'                   " vim启动菜单
 Plug 'majutsushi/tagbar'                    " 列出tag
 Plug 'tpope/vim-fugitive'                   " git命令
 Plug 'junegunn/gv.vim'                      " git https://github.com/junegunn/gv.vim git commit browser
+Plug 'Xuyuanp/nerdtree-git-plugin'          " 导航目录中看到 git 版本信息
 
 
 " 代码补全
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+" if has('nvim')
+  " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+  " Plug 'Shougo/deoplete.nvim'
+  " Plug 'roxma/nvim-yarp'
+  " Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" let g:deoplete#enable_at_startup = 1
 
 Plug 'godlygeek/tabular'                       " 文本对齐, 选定文本 :Tab/符号
 Plug 'jiangmiao/auto-pairs'                    " 自动匹配对称标记
 Plug 'kien/rainbow_parentheses.vim'            " 彩色括号
 Plug 'honza/vim-snippets'                      " 代码模板
+" Plug 'SirVer/ultisnips'                        " 代码模板
 " Plug 'vim-syntastic/syntastic'               " 语法检测
 Plug 'scrooloose/nerdtree'                     " 目录树
 Plug 'jistr/vim-nerdtree-tabs'                 " 目录树
@@ -169,8 +172,10 @@ Plug 'ctrlpvim/ctrlp.vim'                      " 类似vscode command + p
 Plug 'tpope/vim-dispatch'                      " 异步编译及testing
 Plug 'easymotion/vim-easymotion'               " 快速移动插件, ',,w'可以在单词上出现前缀，然后快速跳转
 Plug 'haya14busa/incsearch.vim'                " 支持regex的匹配查询
+Plug 'Valloric/YouCompleteMe'
 Plug 'haya14busa/incsearch-fuzzy.vim'          " 同上
-" Plug 'fatih/vim-go'                          " for golang
+Plug 'dgryski/vim-godef'                       " for golang
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " Plug 'jmcantrell/vim-virtualenv'             " for python
 Plug 'python-mode/python-mode'                 " for python
 Plug 'zchee/deoplete-jedi'                     " for python
@@ -436,20 +441,17 @@ let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 "inoremap <tab> <c-r>=MyTabFunction()<cr>
 
 
-let g:LargeFile=1
-
-
 " for golang https://github.com/fatih/vim-go
 " https://github.com/fatih/vim-go-tutorial
-" let g:go_version_warning = 0
-" set autowrite
-" autocmd FileType go nmap <leader>b  <Plug>(go-build)
-" autocmd FileType go nmap <leader>r  <Plug>(go-run)
-" let g:go_list_type = "quickfix"
-" autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-" let g:go_metalinter_autosave_enabled = ['golint']
-" let g:go_metalinter_autosave = 1
+let g:go_version_warning = 0
+set autowrite
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+let g:go_list_type = "quickfix"
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave_enabled = ['golint']
+let g:go_metalinter_autosave = 1
 
 
 " for json
@@ -476,20 +478,21 @@ set highlight+=c:LineNr               " blend vertical separators with line numb
 set laststatus=2                      " always show status line
 set lazyredraw                        " don't bother updating screen during macro playback
 
-" 退出快捷键
-inoremap jj <Esc>`^
-inoremap hhh <Esc>`^
-inoremap kkk <Esc>`^
-inoremap lll <Esc>`^
-inoremap ooo <Esc>`^o
-inoremap <C-k> <Esc>`^
-inoremap <leader>w <Esc>:w<cr>
-noremap <leader>e :q<cr>
-noremap <leader>E :qa!<cr>
+" exit 退出快捷键
+noremap <leader>w :w!<cr>
+noremap <leader>q :q!<cr>
+noremap <leader>wq :wq!<cr>
 noremap <leader>b :bd<cr>
 noremap <leader>s :vs<cr>  " vertical split
 noremap <leader>r :e!<cr>  " reload without save
-noremap <leader>w :w<cr>
+
+
+" v 模式下复制内容到系统剪切板
+vmap <Leader>c "+yy
+
+" 跳到上次标记处
+noremap <c-i> <Esc>`^
+
 
 " https://github.com/lfv89/vim-interestingwords 高亮感兴趣的 word
 nnoremap <silent> <leader>f :call InterestingWords('n')<cr>
@@ -523,7 +526,7 @@ else
 endif
 
 " Sudo to write
-cnoremap w!! w !sudo tee % >/dev/null
+" cnoremap w!! w !sudo tee % >/dev/null
 
 " Plug 'fullybaked/toggle-numbers.vim'
 nmap ,n :LineNumberToggle<cr>
