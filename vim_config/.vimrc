@@ -87,7 +87,7 @@ set incsearch
 "high light search
 set hlsearch
 "auto backup file with filename+~
-"set backup
+set nobackup
 set title
 set foldenable
 "fold code by syntax 'cmd':
@@ -157,12 +157,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin'                   " 导航目录中看到 git
 " if has('nvim')
   " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " else
-  " Plug 'Shougo/deoplete.nvim'
-  " Plug 'roxma/nvim-yarp'
-  " Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
 " endif
 " let g:deoplete#enable_at_startup = 1
-
+"
 Plug 'godlygeek/tabular'                           " 文本对齐, 选定文本 :Tab/符号
 Plug 'jiangmiao/auto-pairs'                        " 自动匹配对称标记
 Plug 'kien/rainbow_parentheses.vim'                " 彩色括号
@@ -180,8 +180,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'dgryski/vim-godef'                           " for golang
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinarie    s' }
 " Plug 'jmcantrell/vim-virtualenv'                 " for python
-Plug 'python-mode/python-mode'                     " for python
 Plug 'zchee/deoplete-jedi'                         " for python
+Plug 'davidhalter/jedi-vim'                        " for python
 Plug 'ryanoasis/vim-devicons'                      " 文件icon
 Plug 'scrooloose/nerdcommenter'                    " 快速注释
 " Plug 'xolox/vim-misc'                           " load vimscript
@@ -208,25 +208,18 @@ nnoremap <c-l> :w<cr>
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> [n :bnext<CR>
 
-let g:pymode_python = 'python'  " Values are `python`, `python3`, `disable`.
-let g:pymode_paths = reverse(split(globpath(getcwd().'/eggs', '*'), '\n'))    " support zc.buildout
-let g:pymode_trim_whitespaces = 1
-let g:pymode_quickfix_maxheight = 3
-let g:pymode_indent = 1
-let g:pymode_folding = 1
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_bind = "<C-k>"
-let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()  # BREAKPOINT TODO REMOVE; from nose.tools import set_trace; set_trace()'
 
+" jedi-vim
+" more doc:
+" https://github.com/davidhalter/jedi-vim/blob/master/doc/jedi-vim.txt
+" let g:jedi#completions_command = "<C-N>"
+" Goto assignments: <leader>g (typical goto function)
+" 跳转到定义： <leader>d
+" 显示Python文档(Pydoc)： K
+" 重命名：<leader>r
+" 展示某个变量的使用方法：<leader>n (shows all the usages of a name)
+" 打开某个模块：:Pyimport os (打开 os 模块)"
 
-let g:pymode_run = 1
-let g:pymode_run_bind = "<C-e>"
-"let g:pymode_run_bind = '<leader>r'
-let g:pymode_virtualenv = 1
-
-" Override view python doc key shortcut to Ctrl-Shift-d
-let g:pymode_doc=1
-let g:pymode_doc_bind = 'K'
 
 autocmd CompleteDone * pclose
 " python-mode conflict with jedi
@@ -353,10 +346,6 @@ nnoremap tt :tab split<CR>
 autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
 nnoremap <silent> <F3> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
 
-
-" rst书写插件
-let proj1 = { 'path': '~/Program/python-web-guide',}
-let g:riv_projects = [proj1]
 
 " ctrlp, 在~/.agignore添加一行node_modules
 " https://stackoverflow.com/questions/24479101/vim-ctrlp-not-parsing-ag-silver-search-ignore-option-correctly
@@ -515,9 +504,9 @@ let g:startify_change_to_dir = 0
 
 "
 set background=dark
-" colorscheme gruvbox
-colorscheme hybrid
-" colorscheme   seoul256
+colorscheme gruvbox
+" colorscheme hybrid
+" colorscheme seoul256
 " colorscheme srcery
 " colorscheme one
 " colorscheme onedark
