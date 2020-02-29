@@ -8,6 +8,7 @@ fast init config for mac and linux.
 ## Dep
 
 ```
+nerd-fonts
 python 2.7 (python-devel)
 python 3.7
 ```

@@ -126,7 +126,7 @@ Plug 'joshdick/onedark.vim'                          " colorschema: onedark
 Plug 'srcery-colors/srcery-vim'                      " colorschema: srcery
 Plug 'rakr/vim-one'                                  " colorscheme: one
 " Plug 'altercation/vim-colors-solarized'            " 需要手动安装
-Plug 'jaxbot/semantic-highlight.vim'                 " ,h 根据语义来代码高亮
+Plug 'jaxbot/semantic-highlight.vim'                 " ,h => 根据语义来代码高亮
 Plug 'bling/vim-airline'                             " 状态栏
 Plug 'vim-airline/vim-airline-themes'                " 同上
 
@@ -137,16 +137,17 @@ Plug 'terryma/vim-expand-region'                     " + 扩大选择, - 减少�
 Plug 'ntpeters/vim-better-whitespace'                " 空白
 Plug 'fullybaked/toggle-numbers.vim'                 " 行号
 Plug 'airblade/vim-gitgutter'                        " git状态
-Plug 'lfv89/vim-interestingwords'                    " https://github.com/lfv89/vim-interestingwords
+Plug 'lfv89/vim-interestingwords'                    " ,k ,K => 高亮操作的字符串
+" Plug 'itchyny/vim-cursorword'                        " 正在处理的字符串加入横线
 Plug 'elzr/vim-json'                                 " json格式化
 Plug 'ervandew/supertab'                             " 补全
 Plug 'tpope/vim-surround'                            " 高效操作配对符号
-Plug 'tpope/vim-repeat'                              " 按.重复surround操作
+Plug 'tpope/vim-repeat'                              " . => 重复surround操作
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'                              " 搜索
 Plug 'mhinz/vim-startify'                            " vim启动菜单
-Plug 'majutsushi/tagbar'                             " 列出tag
+Plug 'majutsushi/tagbar'                             " ,t => 列出tag
 Plug 'tpope/vim-fugitive'                            " git命令
 Plug 'junegunn/gv.vim'                               " git https://github.com/junegunn/gv.vim git commit browser
 Plug 'Xuyuanp/nerdtree-git-plugin'                   " 导航目录中看到 git 版本信息
@@ -168,14 +169,14 @@ Plug 'kien/rainbow_parentheses.vim'                " 彩色括号
 Plug 'honza/vim-snippets'                          " 代码模板
 " Plug 'SirVer/ultisnips'                            " 代码模板
 " Plug 'vim-syntastic/syntastic'                   " 语法检测
-Plug 'scrooloose/nerdtree'                         " 目录树
+Plug 'scrooloose/nerdtree'                         " ,v => 目录树
 Plug 'jistr/vim-nerdtree-tabs'                     " 目录树
 Plug 'ctrlpvim/ctrlp.vim'                          " 类似vscode command + p
 Plug 'tpope/vim-dispatch'                          " 异步编译及testing
 Plug 'easymotion/vim-easymotion'                   " 快速移动插件, ',,w'可以在单词上出现前缀，然后快速跳转
 Plug 'haya14busa/incsearch.vim'                    " 支持regex的匹配查询
-Plug 'Valloric/YouCompleteMe'
 Plug 'haya14busa/incsearch-fuzzy.vim'              " 同上
+Plug 'Valloric/YouCompleteMe'
 Plug 'dgryski/vim-godef'                           " for golang
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinarie    s' }
 " Plug 'jmcantrell/vim-virtualenv'                 " for python
@@ -482,12 +483,12 @@ set laststatus=2                      " always show status line
 set lazyredraw                        " don't bother updating screen during macro playback
 
 " exit 退出快捷键
-noremap <leader>w :w!<cr>             " 强制写入
-noremap <leader>q :q!<cr>             " 强制退出
-noremap <leader>wq :wq!<cr>           " 写入退出
-noremap <leader>buf :bd<cr>           " 清理缓存
-noremap <leader>s :vs<cr>             " vertical split
-noremap <leader>r :e!<cr>             " reload without save
+noremap <leader>w :w!<cr>                                " 强制写入
+noremap <leader>q :q!<cr>                                " 强制退出
+noremap <leader>wq :wq!<cr>                              " 写入退出
+noremap <leader>buf :bd<cr>                              " 清理缓存
+noremap <leader>s :vs<cr>                                " vertical split
+noremap <leader>r :e!<cr>                                " reload without save
 
 " Del 删除
 nmap <Del> x
@@ -515,11 +516,11 @@ let g:startify_change_to_dir = 0
 "
 set background=dark
 " colorscheme gruvbox
-" colorscheme hybrid
+colorscheme hybrid
 " colorscheme   seoul256
 " colorscheme srcery
 " colorscheme one
-colorscheme onedark
+" colorscheme onedark
 
 " solarized 主题
 " let g:solarized_termtrans = 1
@@ -563,3 +564,15 @@ set listchars=tab:⇥\ ,trail:·,extends:⋯,precedes:⋯,nbsp:~
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
 let g:ale_linters = {'python': []}
+
+
+" easy-motion
+" 显示行跳转标记 ,,j  ,,k  ,,L
+" ,,s 根据字符实现跳转标记
+let g:EasyMotion_smartcase = 1                                  " 不区分大小写
+let g:EasyMotion_use_migemo= 0                                  " 强制us布局
+" nmap <leader><leader>s <Plug>(easymotion-s2)                  " 双向查询某个字符并标记跳转
+" map <Leader><Leader>j <Plug>(easymotion-j)                    " 显示下面每行的跳转标记
+" map <Leader><Leader>k <Plug>(easymotion-k)                    " 显示上面每行的跳转标记
+nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)          " 显示双向的跳转标记
+
