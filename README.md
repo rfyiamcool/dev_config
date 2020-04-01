@@ -50,16 +50,21 @@ validate vim version
 update vim plug
 
 ```
+# backup your config
 cd ~
 mdir vimbak
 mv .vimrc  vimbak/
 mv .vim    vimbak/
 
+# set config
+git clone https://github.com/rfyiamcool/dev_config.git
 \cp vim_config/.vimrc ~/.vimrc
 
+# wget plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# install plug
 vim +PlugInstall
 ```
 
