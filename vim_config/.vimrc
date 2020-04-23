@@ -134,7 +134,7 @@ Plug 'vim-airline/vim-airline-themes'                " 同上
 " 功能扩展
 " Plug 'Chiel92/vim-autoformat' " https://github.com/Chiel92/vim-autoformat for code formatter
 Plug 'terryma/vim-expand-region'                     " + 扩大选择, - 减少选择
-Plug 'ntpeters/vim-better-whitespace'                " 空白
+Plug 'ntpeters/vim-better-whitespace'                " 清理无用的空白
 Plug 'fullybaked/toggle-numbers.vim'                 " 行号
 Plug 'airblade/vim-gitgutter'                        " git状态
 Plug 'lfv89/vim-interestingwords'                    " ,k ,K => 高亮操作的字符串
@@ -207,6 +207,7 @@ nnoremap <c-l> :w<cr>
 " 切换 buffer
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> [n :bnext<CR>
+
 
 
 " jedi-vim
@@ -486,7 +487,9 @@ vmap <Bs> x
 
 " v 模式下复制内容到系统剪切板
 vmap <Leader>c "+yy
-" nmap <leader>v "+gp
+
+
+
 
 " 跳到上次标记处
 noremap <c-i> <Esc>`^
@@ -518,14 +521,6 @@ colorscheme gruvbox
 " let g:solarized_visibility = "high"
 " let g:solarized_contrast = "high"
 " colorschema hybrid, https://github.com/w0ng/vim-hybrid
-
-
-" 用 ,a 搜索当前 cursor 下单词
-if executable('ag')
-    noremap <leader>a :Ag! -w "<cword>"<cr>
-else
-    noremap <Leader>a :Ack <cword><cr>
-endif
 
 " Sudo to write
 " cnoremap w!! w !sudo tee % >/dev/null
@@ -565,3 +560,39 @@ let g:EasyMotion_use_migemo= 0                                  " 强制us布局
 " map <Leader><Leader>k <Plug>(easymotion-k)                    " 显示上面每行的跳转标记
 nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)          " 显示双向的跳转标记
 
+
+" jump line head, tail
+noremap <c-a> ^
+noremap <c-e> $
+inoremap <c-a> <ESC>^i
+inoremap <c-e> <ESC>$a
+
+
+" fzf and ag
+if executable('ag')
+    nnoremap <silent> <c-p> :Files <CR>
+
+    noremap <leader>ag :Ag <CR>
+    noremap <leader>ff :Files <CR>
+    noremap <leader>rg :Ag <C-r>=expand('<cword>')<CR>
+endif
+
+let g:fzf_colors = {
+\ 'fg': ['fg', 'Normal'],
+\ 'bg': ['bg', 'Normal'],
+\ 'hl': ['fg', 'Search'],
+\ 'fg+': ['fg', 'Normal'],
+\ 'bg+': ['bg', 'Normal'],
+\ 'hl+': ['fg', 'DraculaOrange'],
+\ 'info': ['fg', 'DraculaPurple'],
+\ 'border': ['fg', 'Ignore'],
+\ 'prompt': ['fg', 'DraculaGreen'],
+\ 'pointer': ['fg', 'Exception'],
+\ 'marker': ['fg', 'Keyword'],
+\ 'spinner': ['fg', 'Label'],
+\ 'header': ['fg', 'Comment'] }
+
+
+" 寄存器b
+noremap yyb "byy
+noremap pb "bp
