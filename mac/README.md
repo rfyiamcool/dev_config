@@ -63,6 +63,12 @@ brew install thefuck
 brew install autojump
 ```
 
+## zsh theme
+
+```
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+```
+
 ## 复制 zshrc 文件
 
 ```sh
