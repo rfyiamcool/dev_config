@@ -151,6 +151,7 @@ Plug 'majutsushi/tagbar'                             " ,t => 列出tag
 Plug 'tpope/vim-fugitive'                            " git命令
 Plug 'junegunn/gv.vim'                               " git https://github.com/junegunn/gv.vim git commit browser
 Plug 'Xuyuanp/nerdtree-git-plugin'                   " 导航目录中看到 git 版本信息
+" Plug 'justinmk/vim-sneak'
 
 
 " 代码补全
@@ -174,8 +175,8 @@ Plug 'jistr/vim-nerdtree-tabs'                     " 目录树
 Plug 'ctrlpvim/ctrlp.vim'                          " 类似vscode command + p
 Plug 'tpope/vim-dispatch'                          " 异步编译及testing
 Plug 'easymotion/vim-easymotion'                   " 快速移动插件, ',,w'可以在单词上出现前缀，然后快速跳转
-Plug 'haya14busa/incsearch.vim'                    " 支持regex的匹配查询
-Plug 'haya14busa/incsearch-fuzzy.vim'              " 同上
+" Plug 'haya14busa/incsearch.vim'                    " 支持regex的匹配查询
+" Plug 'haya14busa/incsearch-fuzzy.vim'              " 同上
 Plug 'Valloric/YouCompleteMe'
 Plug 'dgryski/vim-godef'                           " for golang
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinarie    s' }
@@ -435,6 +436,9 @@ let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 "inoremap <tab> <c-r>=MyTabFunction()<cr>
 
 
+" 执行golang
+nnoremap gorun :!go run %<cr>
+
 " for golang https://github.com/fatih/vim-go
 " https://github.com/fatih/vim-go-tutorial
 let g:go_version_warning = 0
@@ -477,8 +481,12 @@ noremap <leader>w :w!<cr>                                " 强制写入
 noremap <leader>q :q!<cr>                                " 强制退出
 noremap <leader>wq :wq!<cr>                              " 写入退出
 noremap <leader>buf :bd<cr>                              " 清理缓存
-noremap <leader>s :vs<cr>                                " vertical split
 noremap <leader>r :e!<cr>                                " reload without save
+
+" 分屏功能
+noremap <leader>vs :vs<cr>                               " vertical split
+noremap <leader>sp :sp<cr>                               " vertical split
+
 
 " Del 删除
 nmap <Del> x
@@ -487,8 +495,6 @@ vmap <Bs> x
 
 " v 模式下复制内容到系统剪切板
 vmap <Leader>c "+yy
-
-
 
 
 " 跳到上次标记处
@@ -505,7 +511,7 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 " 禁止 startify 自动切换目录
 let g:startify_change_to_dir = 0
 
-"
+" 主题
 set background=dark
 colorscheme gruvbox
 " colorscheme hybrid
@@ -560,6 +566,9 @@ let g:EasyMotion_use_migemo= 0                                  " 强制us布局
 " map <Leader><Leader>k <Plug>(easymotion-k)                    " 显示上面每行的跳转标记
 nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)          " 显示双向的跳转标记
 
+" 搜索两个单词
+nmap <Leader>ss <Plug>(easymotion-s2)
+
 
 " jump line head, tail
 noremap <c-a> ^
@@ -596,3 +605,4 @@ let g:fzf_colors = {
 " 寄存器b
 noremap yyb "byy
 noremap pb "bp
+
