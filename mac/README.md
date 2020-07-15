@@ -91,7 +91,17 @@ brew install reattach-to-user-namespace
 cp tmux.conf ~/.tmux.conf
 ```
 
-# Ref
+## karabiner keyboard map
+
+1. install karabiner
+2. cp config
+
+```
+mkdir ~/config/karabiner
+cp karabiner.json ~/config/karabiner/karabiner.json
+```
+
+# refer
 
 - https://sourabhbajaj.com/mac-setup/iTerm/zsh.html
 - https://medium.com/@rafavinnce/iterm2-zsh-oh-my-zsh-material-design-the-most-power-full-terminal-on-macos-332b1ee364a5
